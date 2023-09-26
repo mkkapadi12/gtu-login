@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="login-box" id="box">
+        <i class="bi bi-brightness-high-fill" id="toggledark"></i>
+        <h2>GTU Login</h2>
+        <form onsubmit="return validateform()">
+          <label>Username :</label>
+          <input type="number" placeholder="Enter Enrollment" id="username" />
+          <p id="usererror" class="error"></p>
+
+          <label>Password :</label>
+          <input type="password" placeholder="Enter Password" id="password" />
+          <p id="passerror" class="error"></p>
+
+          <label>Your E-mail :</label>
+          <input type="email" placeholder="Enter E-mail" id="email" />
+          <p id="emailerror" class="error"></p>
+
+          <label>Semester :</label>
+
+          <input type="radio" id="radio1" name="semester" />
+          <label>sem 1</label>
+          <input type="radio" id="radio2" name="semester" />
+          <label>sem 2</label>
+
+          <p id="radioerror" class="error"></p>
+
+          <label>Phone Number :</label>
+          <input type="number" id="number" placeholder="Enter your Number" />
+          <p id="numerror" class="error"></p>
+
+          <label>Date of Birth :</label>
+          <input type="date" id="date" />
+          <p id="dateerror" class="error"></p>
+
+          <input type="submit" />
+        </form>
+      </div>
+    </div>
+    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+    <script>
+      let username = document.getElementById("username");
+      let password = document.getElementById("password");
+      let email = document.getElementById("email");
+      let number = document.getElementById("number");
+      let date = document.getElementById("date");
+
+      let flag = 1;
+
+      function validateform() {
+        if (username.value == "") {
+          document.getElementById("usererror").innerHTML = "User name is Empty";
+          flag = 0;
+        } else if (username.value.length < 12) {
+          document.getElementById("usererror").innerHTML =
+            "Enrollment should Required 12 character";
+          flag = 0;
+        } else if (
+          (username.value == "220130107036" && password.value == "mk2005") ||
+          (username.value == "220130107119" && password.value == "raj001") ||
+          (username.value == "220130107057" && password.value == "ayush04") ||
+          (username.value == "220130107015" && password.value == "bhautik30") ||
+          (username.value == "220130107048" && password.value == "raj2004")
+        ) {
+          document.getElementById("usererror").innerHTML = "";
+          flag = 1;
+        } else {
+          document.getElementById("usererror").innerHTML = "Username is wrong";
+          document.getElementById("passerror").innerHTML = "Password is wrong";
+          flag = 0;
+        }
+        // else {
+        //   document.getElementById("usererror").innerHTML = "";
+        //   flag = 1;
+        // }
+
+        if (password.value == "") {
+          document.getElementById("passerror").innerHTML = "Password is Empty";
+          flag = 0;
+        }
+        //  else {
+        //   document.getElementById("passerror").innerHTML = "Password is wrong";
+        // }
+
+        if (email.value == "") {
+          document.getElementById("emailerror").innerHTML = "E-mail is Empty";
+          flag = 0;
+        } else {
+          document.getElementById("emailerror").innerHTML = "";
+        }
+
+        if (
+          !(
+            document.getElementById("radio1").checked ||
+            document.getElementById("radio2").checked
+          )
+        ) {
+          document.getElementById("radioerror").innerHTML =
+            "Please select semester !";
+          flag = 0;
+        } else {
+          document.getElementById("radioerror").innerHTML = "";
+        }
+
+        if (number.value == "") {
+          document.getElementById("numerror").innerHTML =
+            "Please Enter your Number ";
+          flag = 0;
+        } else if (number.value.length < 10 || number.value.length > 10) {
+          document.getElementById("numerror").innerHTML =
+            "Number should Require 10 digits !";
+          flag = 0;
+        } else {
+          document.getElementById("numerror").innerHTML = " ";
+        }
+
+        if (date.value == "") {
+          document.getElementById("dateerror").innerHTML =
+            "Please Enter Your Birth Date";
+          flag = 0;
+        } else {
+          document.getElementById("dateerror").innerHTML = " ";
+        }
+
+        if (flag) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      const toggle = document.getElementById("toggledark");
+      const body = document.querySelector("body");
+      const box = document.getElementById("box");
+
+      toggle.addEventListener("click", function () {
+        this.classList.toggle("bi-moon");
+
+        if (this.classList.toggle("bi-brightness-high-fill")) {
+          body.style.background = "white";
+          // body.style.color = "black";
+          body.style.transition = "1.7s";
+          box.style.boxShadow = "0px 0px 20px #000";
+        } else {
+          body.style.background = "black";
+          // body.style.color = "white";
+          body.style.transition = "1.7s";
+          box.style.boxShadow = "0px 0px 20px #6cccc6";
+        }
+      });
+    </script>
+    <!-- <script>
+      function sendEmail() {
+        Email.send({
+          Host: "smpt.gmail.com",
+          Username: "mayurkapadi2005@gmail.com",
+          Password: "Mayur@9727434078",
+          To: "mayurkapadi2005@gmail.com",
+          From: document.getElementById("email").value,
+          Subject: "This is the subject",
+          Body: "And this is the body",
+        }).then((message) => alert(message));
+      }
+    </script> -->
+  </body>
+</html>
